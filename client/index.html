@@ -1,0 +1,55 @@
+<head>
+	<title>Accounts</title>
+</head>
+
+<body>
+	{{> header}}
+</body>
+
+<template name="header">
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="container">
+				<div class="nav pull-right">
+					{{> user_info}}
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="user_info">
+	<ul class="nav pull-right">
+		{{#if currentUser}}
+			{{> user_loggedin}}
+		{{else}}
+			{{> user_loggedout}}
+		{{/if}}
+	</ul>
+</template>
+
+<template name="user_loggedin">
+	{{#if loggingIn}}
+		<li><a>Logging in...</a></li>
+	{{else}}
+		<li>
+			<img class="img-rounded" style="height: 32px; margin-top: 4px;" src="{{currentUser.profile.avatar_url}}" />
+		</li>
+		<li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+				{{currentUser.profile.name}}
+				<b class="caret"></b>
+			</a>
+			<ul class="dropdown-menu">
+				<li><a>Account Settings</a></li>
+				<li class="divider"></li>
+				<li><a id="logout">Logout</a></li>
+			</ul>
+		</li>
+	{{/if}}
+</template>
+
+<template name="user_loggedout">
+	<li><a id="login">Login with Github</a></li>
+</template>
+
