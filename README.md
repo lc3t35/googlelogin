@@ -6,8 +6,15 @@ using also Meteor but that sets up logins via Google's app api instead of GitHub
 It's the result of the process for solving this question
 http://stackoverflow.com/questions/18366500/how-to-get-google-profile-with-meteor-loginwithgoogle
 
-TODO :
+USAGE :
 
+modify settings.json with your API keys (get it with Google Console API)
+run meteor :
+
+meteor --settings settings.json
+
+
+TODO :
 include tests with rtd ( https://github.com/xolvio/rtd )
 
 
