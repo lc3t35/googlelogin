@@ -7,7 +7,7 @@
     <ignored path="googlelogin.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="d313ca98-2fdd-4546-99ca-a1eb154d089d" time="1377599232077" ignored="false" />
-    <file path="/README.md" changelist="d313ca98-2fdd-4546-99ca-a1eb154d089d" time="1377607395285" ignored="false" />
+    <file path="/README.md" changelist="d313ca98-2fdd-4546-99ca-a1eb154d089d" time="1377607447414" ignored="false" />
     <file path="/accounts.js" changelist="d313ca98-2fdd-4546-99ca-a1eb154d089d" time="1377606280899" ignored="false" />
     <file path="/index.js" changelist="d313ca98-2fdd-4546-99ca-a1eb154d089d" time="1377605737850" ignored="false" />
     <file path="/index.html" changelist="d313ca98-2fdd-4546-99ca-a1eb154d089d" time="1377606165803" ignored="false" />
@@ -33,7 +33,7 @@
       <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="0" selection-start="562" selection-end="562" vertical-scroll-proportion="0.20334928">
+            <state line="10" column="107" selection-start="541" selection-end="541" vertical-scroll-proportion="0.119617224">
               <folding />
             </state>
           </provider>
@@ -344,7 +344,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="562" selection-end="562" vertical-scroll-proportion="0.20334928">
+        <state line="10" column="107" selection-start="541" selection-end="541" vertical-scroll-proportion="0.119617224">
           <folding />
         </state>
       </provider>

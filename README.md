@@ -8,8 +8,7 @@ http://stackoverflow.com/questions/18366500/how-to-get-google-profile-with-meteo
 
 USAGE :
 
-modify settings.json with your API keys (get it with Google Console API)
-run meteor :
+modify settings.json with your API keys (get it with Google Console API), and run meteor with the settings :
 
 meteor --settings settings.json
 
