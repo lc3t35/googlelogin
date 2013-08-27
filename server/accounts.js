@@ -1,12 +1,10 @@
 Accounts.onCreateUser(function (options, user) {
-console.log("options : "+ options);
-console.log("user : "+ user);
 
-  var accessToken = user.services.github.accessToken,
+  var accessToken = user.services.google.accessToken,
       result,
       profile;
 
-  result = Meteor.http.get("https://api.github.com/user", {
+  result = Meteor.http.get("https://www.googleapis.com/oauth2/v3/userinfo", {
 		headers: {"User-Agent": "Meteor/1.0"},
 		
     params: {
@@ -19,16 +17,18 @@ console.log("user : "+ user);
 
   profile = _.pick(result.data,
     "name",  
-	  "login",
-    "avatar_url",
-    "url",
-    "company",
-    "blog",
-    "location",
+	"given_name",
+    "family_name",
+    "profile",
+    "picture",
     "email",
-    "bio",
-    "html_url");
+    "email_verified",
+    "birthdate",
+    "gender",
+    "locale",
+    "hd");
 
+  // console.log(profile);
   user.profile = profile;
 
   return user;

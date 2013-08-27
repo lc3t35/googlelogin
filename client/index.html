@@ -33,7 +33,7 @@
 		<li><a>Logging in...</a></li>
 	{{else}}
 		<li>
-			<img class="img-rounded" style="height: 32px; margin-top: 4px;" src="{{currentUser.profile.avatar_url}}" />
+			<img class="img-rounded" style="height: 32px; margin-top: 4px;" src="{{currentUser.profile.picture}}" />
 		</li>
 		<li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -50,6 +50,6 @@
 </template>
 
 <template name="user_loggedout">
-	<li><a id="login">Login with Github</a></li>
+	<li><a id="login">Login with Google</a></li>
 </template>
 

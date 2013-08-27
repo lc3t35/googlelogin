@@ -1,4 +1,4 @@
 {
-	"githubClientID" : "abf319882a1f99ebf565",
-	"githubSecret" : "dcf75474f49787fa2052566f8fb16cb575edc0ba"
+"google_clientId" : "put your clientId here",
+"google_secret" : "put your secret here"
 }

@@ -1,13 +1,14 @@
 Template.user_loggedout.events({
 	"click #login": function(e, tmpl){
-		Meteor.loginWithGithub({
-				requestPermissions: ['user', 'public_repo']
+		Meteor.loginWithGoogle({
+				requestPermissions: ['email', 'profile']
 		}, function (err) {
 			if(err) {
 				//error handling
+                alert('error : '+ err);
 			} else {
 				//show an alert
-				//alert('logged in');
+				alert('logged in');
 			}
 		});
 	}

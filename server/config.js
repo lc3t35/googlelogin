@@ -1,9 +1,9 @@
 Accounts.loginServiceConfiguration.remove({
-		service: "github"
+		service: "google"
 });
 
 Accounts.loginServiceConfiguration.insert({
-		service: "github",
-		clientId: Meteor.settings.githubClientID,
-		secret: Meteor.settings.githubSecret
+		service: "google",
+		clientId: Meteor.settings.google_clientId,
+		secret: Meteor.settings.google_secret
 });

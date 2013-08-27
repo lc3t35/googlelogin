@@ -6,6 +6,7 @@
 autopublish
 insecure
 preserve-inputs
-accounts-github
 accounts-ui
 bootstrap
+accounts-google
+underscore
