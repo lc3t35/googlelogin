@@ -7,7 +7,7 @@
     <ignored path="googlelogin.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="d313ca98-2fdd-4546-99ca-a1eb154d089d" time="1377599232077" ignored="false" />
-    <file path="/README.md" changelist="d313ca98-2fdd-4546-99ca-a1eb154d089d" time="1377607111550" ignored="false" />
+    <file path="/README.md" changelist="d313ca98-2fdd-4546-99ca-a1eb154d089d" time="1377607178717" ignored="false" />
     <file path="/accounts.js" changelist="d313ca98-2fdd-4546-99ca-a1eb154d089d" time="1377606280899" ignored="false" />
     <file path="/index.js" changelist="d313ca98-2fdd-4546-99ca-a1eb154d089d" time="1377605737850" ignored="false" />
     <file path="/index.html" changelist="d313ca98-2fdd-4546-99ca-a1eb154d089d" time="1377606165803" ignored="false" />
@@ -33,7 +33,7 @@
       <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="56" selection-start="450" selection-end="450" vertical-scroll-proportion="0.119617224">
+            <state line="3" column="119" selection-start="267" selection-end="267" vertical-scroll-proportion="0.035885166">
               <folding />
             </state>
           </provider>
@@ -95,8 +95,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="555" />
-    <option name="y" value="228" />
+    <option name="x" value="447" />
+    <option name="y" value="351" />
     <option name="width" value="2540" />
     <option name="height" value="1400" />
   </component>
@@ -211,7 +211,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="555" y="228" width="2540" height="1400" extended-state="0" />
+    <frame x="447" y="351" width="2540" height="1400" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -344,7 +344,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="56" selection-start="450" selection-end="450" vertical-scroll-proportion="0.119617224">
+        <state line="3" column="119" selection-start="267" selection-end="267" vertical-scroll-proportion="0.035885166">
           <folding />
         </state>
       </provider>
