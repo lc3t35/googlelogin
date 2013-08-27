@@ -3,14 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d313ca98-2fdd-4546-99ca-a1eb154d089d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/accounts.js" afterPath="$PROJECT_DIR$/server/accounts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/config.js" afterPath="$PROJECT_DIR$/server/config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/index.html" afterPath="$PROJECT_DIR$/client/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/index.js" afterPath="$PROJECT_DIR$/client/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.meteor/packages" afterPath="$PROJECT_DIR$/.meteor/packages" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.json" afterPath="$PROJECT_DIR$/settings.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="googlelogin.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,7 +33,7 @@
       <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="0" selection-start="410" selection-end="410" vertical-scroll-proportion="0.08373206">
+            <state line="5" column="0" selection-start="286" selection-end="286" vertical-scroll-proportion="0.059808612">
               <folding />
             </state>
           </provider>
@@ -103,8 +95,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="541" />
-    <option name="y" value="249" />
+    <option name="x" value="538" />
+    <option name="y" value="221" />
     <option name="width" value="2540" />
     <option name="height" value="1400" />
   </component>
@@ -219,7 +211,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="541" y="249" width="2540" height="1400" extended-state="0" />
+    <frame x="538" y="221" width="2540" height="1400" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -352,7 +344,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="410" selection-end="410" vertical-scroll-proportion="0.08373206">
+        <state line="5" column="0" selection-start="286" selection-end="286" vertical-scroll-proportion="0.059808612">
           <folding />
         </state>
       </provider>
