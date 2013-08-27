@@ -8,7 +8,7 @@ Template.user_loggedout.events({
                 alert('error : '+ err);
 			} else {
 				//show an alert
-				alert('logged in');
+				// alert('logged in');
 			}
 		});
 	}
@@ -26,3 +26,4 @@ Template.user_loggedin.events({
 		});
 	}
 });
+
