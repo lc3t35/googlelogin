@@ -30,13 +30,20 @@ you need to create test/settings and create settings.json
 including tests with rtd ( https://github.com/xolvio/rtd )
 
 unit/client/test_templates.js
+
 unit/server_test_config.js
+
+acceptance tests : index.spec.js -> working on AuthenticateWithGoogle
+
+PROBLEM TO SOLVE : the Google authentication windows pops up but it is not filled by the webdriver.
 
 TODO :
 
 unit:Accounts.onCreateUser
+
 check code coverage
-acceptance tests
+
+
 
 
 
