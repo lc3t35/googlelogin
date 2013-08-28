@@ -26,4 +26,3 @@ Template.user_loggedin.events({
 		});
 	}
 });
-
