@@ -24,6 +24,8 @@ you need to create test/settings and create settings.json
     "authenticateWithGoogle_name" : "your name",
     "authenticateWithGoogle_email" : "your google email",
     "authenticateWithGoogle_password" : "your google password"
+    "authenticateWithGoogle_title_google_account" : "Comptes Google",       // localise the window title
+    "authenticateWithGoogle_title_grant_access" : "Demande d'autorisation"  // localise the window title
 }
 ```
 
@@ -35,7 +37,7 @@ unit/server_test_config.js
 
 acceptance tests : index.spec.js -> working on AuthenticateWithGoogle
 
-PROBLEM TO SOLVE : the Google authentication windows pops up but it is not filled by the webdriver.
+PROBLEM TO SOLVE : the Google authentication and access grant windows pop up but it does not click on accept.
 
 TODO :
 
