@@ -39,6 +39,21 @@ acceptance tests : index.spec.js -> working on AuthenticateWithGoogle
 
 PROBLEM TO SOLVE : the Google authentication and access grant windows pop up but it does not click on accept.
 
+The call order of it and expects is not the one expected :
+``
+authenticateWithGoogle
+3 - before login
+1 - before login : Accounts
+4 - after login :
+5 - before switch : Accounts
+7 - switchTo
+8 - after switch : Comptes Google
+2 - checks : Accounts
+6 - checking : Accounts
+9 - ????
+FAILING HERE AT THE END
+````
+
 TODO :
 
 unit:Accounts.onCreateUser
