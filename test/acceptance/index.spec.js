@@ -148,28 +148,123 @@
             });
 
             it("returns the requested value", function() {
+                console.log('2 - checks : '+ window_title) ;
                 expect(window_title).toEqual("Accounts");
             });
         });
 
+        /* here is the log
+         authenticateWithGoogle
+         3 - before login
+         1 - before login : Accounts
+         4 - after login :
+         5 - before switch : Accounts
+         7 - switchTo
+         8 - after switch : Comptes Google
+         2 - checks : Accounts
+         6 - checking : Accounts
+         9 - ????
+         FAILING HERE AT THE END
+
+         Why is the order not good ????
+         */
+
         describe("click on LoginWithGoogle", function() {
+
             var window_title;
 
+            console.log('3 - before login');
+
             driver.findElement(webdriver.By.id('login')).click().then(function(what) {
-                console.log('2 - after login : '+ what) ;
+                console.log('4 - after login : '+ what) ;
             });
 
             driver.getTitle().then(function(title) {
-                console.log('3 - before switch : '+ title) ;
+                console.log('5 - before switch : '+ title) ;
                 window_title = title;
+
             });
 
-            it("returns the requested value", function() {
-                console.log('4 - checking : '+ window_title) ;
+            it("checks the window title", function() {
+                console.log('6 - checking : '+ window_title) ;
                 expect(window_title).toEqual("Accounts");
+
             });
 
         });
+
+
+        describe("change the window handle for google credentials", function() {
+            var window_title;
+            var popUpHandle,  parentHandle;
+
+            driver.getAllWindowHandles().then(function(handles) {
+                popUpHandle = handles[1];
+                parentHandle = handles[0];
+                console.log('7 - switchTo');
+                driver.switchTo().window(popUpHandle);
+            });
+
+            driver.getTitle().then(function(title) {
+                window_title = title;
+                console.log('8 - after switch : '+ window_title) ;
+            });
+
+            it("asks for google credentials", function() {
+                console.log('9 - ????') ;
+                expect(window_title).toEqual(title_google_account);
+                expect(driver.findElement(webdriver.By.id('signIn'))).toBeDefined();
+            });
+
+        });
+
+
+          describe("be sure that it fails here", function() {
+
+          var flag;
+
+          it("contains spec with an (un)-expectation", function() {
+          console.log('FAILING HERE AT THE END') ;
+          expect(true).toBe(false);
+          });
+          });
+
+        /*
+         var window_title;
+
+            it("stays at Accounts page", function() {
+
+                driver.findElement(webdriver.By.id('login')).click().then(function(what) {
+                    console.log('2 - after login : '+ what) ;
+                });
+
+                runs(function() {
+                    flag = false;
+                    driver.getTitle().then(function(title) {
+                        console.log('3 - before switch : '+ title) ;
+                        window_title = title;
+                        flag = true;
+                    });
+
+                });
+
+                waitsFor(function() {
+                    driver.getTitle().then(function(title) {
+                        console.log('3 - before switch : '+ title) ;
+                        window_title = title;
+                    });
+                    return flag;
+                }, "timeout", 250);
+
+                runs(function() {
+                    console.log('4 - checking : '+ window_title) ;
+                    expect(window_title).toEqual("Accounts");
+                });
+
+            });
+
+        });
+
 
         describe("change the window handle for google credentials", function() {
             var window_title;
@@ -208,8 +303,6 @@
                 window_title = title;
                 console.log('8 - after connexion : '+ window_title) ;
             });
-
-            console.log('8bis - ???') ;
 
             it("ask for permission", function() {
                 // NOT EXECUTED !
@@ -254,6 +347,8 @@
                     }
                 });
         });
+
+         */
 
         return deferred.promise;
     };
