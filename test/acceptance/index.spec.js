@@ -1,7 +1,9 @@
 (function () {
     "use strict";
 
-    jasmine.getEnv().defaultTimeoutInterval = 10000;
+    // require('fibrous/lib/jasmine_spec_helper');
+
+    jasmine.getEnv().defaultTimeoutInterval = 20000;
 
     var http = require('http'),
         request = require('request'),
@@ -119,12 +121,37 @@
         console.error('Error in acceptance tests');
     };
 
+    var waitFor = function(elementId, timeout)
+    {
+        timeout = timeout || 2000;
+
+        var deferred = webdriver.promise.defer();
+
+        driver
+            .wait(function()
+            {
+                return driver.isElementPresent(webdriver.By.id(elementId));
+            }, timeout)
+            .then(function()
+            {
+                return driver.wait(function()
+                {
+                    return driver
+                        .findElement(webdriver.By.id(elementId))
+                        .isDisplayed();
+                }, timeout);
+            })
+            .then(deferred.fulfill);
+        return deferred.promise;
+    };
+
     var authenticateWithGoogle = function () {
         var name = settings.authenticateWithGoogle_name;
         var email = settings.authenticateWithGoogle_email;
         var password = settings.authenticateWithGoogle_password;
         var title_google_account = settings.authenticateWithGoogle_title_google_account;
         var title_grant_access = settings.authenticateWithGoogle_title_grant_access;
+        var title = "Accounts";
         var deferred = webdriver.promise.defer();
 
         console.log('\nauthenticateWithGoogle');
@@ -140,215 +167,121 @@
         });
 
         describe("checking the windows title", function() {
-            var window_title;
 
-            driver.getTitle().then(function(title) {
-                console.log('1 - before login : '+ title) ;
-                window_title = title;
-            });
+             it("returns the requested value", function(done) {
 
-            it("returns the requested value", function() {
-                console.log('2 - checks : '+ window_title) ;
-                expect(window_title).toEqual("Accounts");
+                driver.getTitle().then(function(window_title) {
+                    expect(window_title).toBe(title);
+                    console.log('1 - before login : '+ window_title) ;
+                    done();
+                });
+
             });
         });
 
-        /* here is the log
-         authenticateWithGoogle
-         3 - before login
-         1 - before login : Accounts
-         4 - after login :
-         5 - before switch : Accounts
-         7 - switchTo
-         8 - after switch : Comptes Google
-         2 - checks : Accounts
-         6 - checking : Accounts
-         9 - ????
-         FAILING HERE AT THE END
+        describe("click on login", function() {
 
-         Why is the order not good ????
-         */
-
-        describe("click on LoginWithGoogle", function() {
-
-            var window_title;
-
-            console.log('3 - before login');
-
-            driver.findElement(webdriver.By.id('login')).click().then(function(what) {
-                console.log('4 - after login : '+ what) ;
-            });
-
-            driver.getTitle().then(function(title) {
-                console.log('5 - before switch : '+ title) ;
-                window_title = title;
-
-            });
-
-            it("checks the window title", function() {
-                console.log('6 - checking : '+ window_title) ;
-                expect(window_title).toEqual("Accounts");
-
-            });
-
-        });
-
-
-        describe("change the window handle for google credentials", function() {
-            var window_title;
-            var popUpHandle,  parentHandle;
-
-            driver.getAllWindowHandles().then(function(handles) {
-                popUpHandle = handles[1];
-                parentHandle = handles[0];
-                console.log('7 - switchTo');
-                driver.switchTo().window(popUpHandle);
-            });
-
-            driver.getTitle().then(function(title) {
-                window_title = title;
-                console.log('8 - after switch : '+ window_title) ;
-            });
-
-            it("asks for google credentials", function() {
-                console.log('9 - ????') ;
-                expect(window_title).toEqual(title_google_account);
-                expect(driver.findElement(webdriver.By.id('signIn'))).toBeDefined();
-            });
-
-        });
-
-
-          describe("be sure that it fails here", function() {
-
-          var flag;
-
-          it("contains spec with an (un)-expectation", function() {
-          console.log('FAILING HERE AT THE END') ;
-          expect(true).toBe(false);
-          });
-          });
-
-        /*
-         var window_title;
-
-            it("stays at Accounts page", function() {
-
+            it("returns the requested value", function(done) {
+                waitFor('login').then(function() {
+                    console.log('2 - on a  un login affiché');
+                });
                 driver.findElement(webdriver.By.id('login')).click().then(function(what) {
-                    console.log('2 - after login : '+ what) ;
+                    console.log('3 - after click : '+ what) ;
+                });
+                var popUpHandle,  parentHandle;
+
+                driver.getAllWindowHandles().then(function(handles) {
+                    popUpHandle = handles[1];
+                    parentHandle = handles[0];
+                    console.log('4 - switchTo');
+                    driver.switchTo().window(popUpHandle);
                 });
 
-                runs(function() {
-                    flag = false;
-                    driver.getTitle().then(function(title) {
-                        console.log('3 - before switch : '+ title) ;
-                        window_title = title;
-                        flag = true;
-                    });
+                driver.getTitle().then(function(window_title) {
+                    expect(window_title).toBe(title_google_account);
+                    console.log('5 - before login : '+ window_title) ;
 
                 });
-
-                waitsFor(function() {
-                    driver.getTitle().then(function(title) {
-                        console.log('3 - before switch : '+ title) ;
-                        window_title = title;
-                    });
-                    return flag;
-                }, "timeout", 250);
-
-                runs(function() {
-                    console.log('4 - checking : '+ window_title) ;
-                    expect(window_title).toEqual("Accounts");
+                waitFor('signIn').then(function() {
+                    console.log('6 - on a  un connexion affiché');
+                    expect(driver.findElement(webdriver.By.id('signIn'))).toBeDefined();
                 });
 
             });
-
-        });
-
-
-        describe("change the window handle for google credentials", function() {
-            var window_title;
-            var popUpHandle,  parentHandle;
-
-            driver.getAllWindowHandles().then(function(handles) {
-                popUpHandle = handles[1];
-                parentHandle = handles[0];
-                console.log('5 - switchTo');
-                driver.switchTo().window(popUpHandle);
-            });
-
-            driver.getTitle().then(function(title) {
-                window_title = title;
-                console.log('6 - after switch : '+ window_title) ;
-            });
-
-            it("asks for google credentials", function() {
-                console.log('6bis - ????') ;
-                expect(window_title).toEqual(title_google_account);
-                expect(driver.findElement(webdriver.By.id('signIn'))).toBeDefined();
-            });
-
         });
 
         describe("send google credentials", function() {
             var window_title;
 
-            driver.findElement(webdriver.By.id('Email')).sendKeys(email);
-            driver.findElement(webdriver.By.id('Passwd')).sendKeys(password);
-            driver.findElement(webdriver.By.id('signIn')).click().then(function(what) {
-                console.log('7 - signIn click : '+ what) ;
-            });
+            it("ask for permission", function(done) {
+                driver.findElement(webdriver.By.id('Email')).sendKeys(email);
+                driver.findElement(webdriver.By.id('Passwd')).sendKeys(password);
+                driver.findElement(webdriver.By.id('signIn')).click().then(function(what) {
+                    console.log('7 - signIn click : '+ what) ;
+                });
 
-            driver.getTitle().then(function(title) {
-                window_title = title;
-                console.log('8 - after connexion : '+ window_title) ;
-            });
+                var popUpHandle,  parentHandle;
 
-            it("ask for permission", function() {
-                // NOT EXECUTED !
-                console.log('9 - window_title : '+ window_title) ;
-                expect(window_title).toEqual(title_grant_access);
-                expect(driver.findElement(webdriver.By.id('submit_approve_access'))).toBeDefined();
+                driver.getAllWindowHandles().then(function(handles) {
+                    popUpHandle = handles[1];
+                    parentHandle = handles[0];
+                    console.log('8 - switchTo');
+                    driver.switchTo().window(popUpHandle);
+                });
+
+                driver.getTitle().then(function(window_title) {
+                    expect(window_title).toBe(title_grant_access);
+                    console.log('9 - before submit : '+ window_title) ;
+
+                });
+                waitFor('submit_approve_access').then(function() {
+                    console.log('10 - on a  un submit affiché');
+                    expect(driver.findElement(webdriver.By.id('submit_approve_access'))).toBeDefined();
+                });
             });
         });
 
         describe("validate permission", function() {
             var window_title;
-            driver.findElement(webdriver.By.id('submit_approve_access')).click().then(function(what) {
-                console.log('10 - submit_approve_access click : '+ what) ;
-            });
-            driver.getTitle().then(function(title) {
-                window_title = title;
-                console.log('11 - submit_approve_access : '+ window_title) ;
-            });
 
-            it("grants access", function() {
-                console.log('12 - grants access ') ;
-                expect(window_title).toEqual("Accounts");
-                expect(driver.findElement(webdriver.By.id('profile-login'))).toBeDefined();
+            it("grants access", function(done) {
+                driver.findElement(webdriver.By.id('submit_approve_access')).click().then(function(what) {
+                    console.log('11 - submit_approve_access click : '+ what) ;
+                });
+
+                var popUpHandle,  parentHandle;
+
+                driver.getAllWindowHandles().then(function(handles) {
+                    popUpHandle = handles[1];
+                    parentHandle = handles[0];
+                    console.log('12 - switchTo');
+                    driver.switchTo().window(popUpHandle);
+                });
+
+                waitFor('profile-login').then(function() {
+                    console.log('13 - on a  un profile affiché');
+                    expect(driver.findElement(webdriver.By.id('profile-login'))).toBeDefined();
+                });
             });
         });
 
         describe("displays the username", function() {
             var window_title;
 
-            driver.getTitle().then(function(title) {
-                window_title = title;
-                console.log('13 - back to Accounts : '+ window_title) ;
+            it("grants access", function(done) {
+
+                driver.findElement(webdriver.By.id('profile-login')).getText()
+                    .then(function (value) {
+                        if (value.indexOf(name) !== 0) {
+                            deferred.rejected(value + ' did not contain ' + name);
+                        } else {
+                            expect(value).toBe(name);
+                            console.log('14 - profile-login : '+ value) ;
+                            deferred.fulfill();
+                        }
+                    });
             });
-
-            driver.findElement(webdriver.By.id('profile-login')).getText()
-                .then(function (value) {
-                    if (value.indexOf(name) !== 0) {
-                        deferred.rejected(value + ' did not contain ' + name);
-                    } else {
-                        console.log('14 - profile-login : '+ value) ;
-                        deferred.fulfill();
-                    }
-                });
         });
-
-         */
 
         return deferred.promise;
     };
