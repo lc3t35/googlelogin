@@ -37,8 +37,10 @@ unit/server_test_config.js
 
 acceptance tests : index.spec.js -> working on AuthenticateWithGoogle
 
-CURRENT PROBLEM TO SOLVE : the callback fails after the authentication and acceptation windows
-
+CURRENT PROBLEM TO SOLVE : the callback fails after the authentication and acceptation windows with this error :
+```
+error : Accounts.LoginCancelledError
+```
 TODO :
 
 unit:Accounts.onCreateUser
