@@ -1,7 +1,7 @@
 (function () {
     "use strict";
 
-    // require('fibrous/lib/jasmine_spec_helper');
+    require('fibrous/lib/jasmine_spec_helper');
 
     jasmine.getEnv().defaultTimeoutInterval = 20000;
 
@@ -123,7 +123,7 @@
 
     var waitFor = function(elementId, timeout)
     {
-        timeout = timeout || 2000;
+        timeout = timeout || 1000;
 
         var deferred = webdriver.promise.defer();
 
@@ -168,11 +168,11 @@
 
         describe("checking the windows title", function() {
 
-             it("returns the requested value", function(done) {
+             it("returns the requested title", function(done) {
 
                 driver.getTitle().then(function(window_title) {
                     expect(window_title).toBe(title);
-                    console.log('1 - before login : '+ window_title) ;
+                    console.log('1 - before login, window name is : '+ window_title) ;
                     done();
                 });
 
@@ -183,27 +183,27 @@
 
             it("returns the requested value", function(done) {
                 waitFor('login').then(function() {
-                    console.log('2 - on a  un login affiché');
+                    console.log('2 - there is a login button displayed');
                 });
                 driver.findElement(webdriver.By.id('login')).click().then(function(what) {
-                    console.log('3 - after click : '+ what) ;
+                    console.log('3 - after click on login : '+ what) ;
                 });
                 var popUpHandle,  parentHandle;
 
                 driver.getAllWindowHandles().then(function(handles) {
                     popUpHandle = handles[1];
                     parentHandle = handles[0];
-                    console.log('4 - switchTo');
+                    console.log('4 - switchTo popUp window');
                     driver.switchTo().window(popUpHandle);
                 });
 
                 driver.getTitle().then(function(window_title) {
                     expect(window_title).toBe(title_google_account);
-                    console.log('5 - before login : '+ window_title) ;
+                    console.log('5 - after login, window name is : '+ window_title) ;
 
                 });
                 waitFor('signIn').then(function() {
-                    console.log('6 - on a  un connexion affiché');
+                    console.log('6 - there is a connexion button displayed');
                     expect(driver.findElement(webdriver.By.id('signIn'))).toBeDefined();
                 });
 
@@ -217,7 +217,7 @@
                 driver.findElement(webdriver.By.id('Email')).sendKeys(email);
                 driver.findElement(webdriver.By.id('Passwd')).sendKeys(password);
                 driver.findElement(webdriver.By.id('signIn')).click().then(function(what) {
-                    console.log('7 - signIn click : '+ what) ;
+                    console.log('7 - after click on signIn : '+ what) ;
                 });
 
                 var popUpHandle,  parentHandle;
@@ -225,17 +225,17 @@
                 driver.getAllWindowHandles().then(function(handles) {
                     popUpHandle = handles[1];
                     parentHandle = handles[0];
-                    console.log('8 - switchTo');
+                    console.log('8 - switchTo popUp window');
                     driver.switchTo().window(popUpHandle);
                 });
 
                 driver.getTitle().then(function(window_title) {
                     expect(window_title).toBe(title_grant_access);
-                    console.log('9 - before submit : '+ window_title) ;
+                    console.log('9 - before approve, window title is : '+ window_title) ;
 
                 });
                 waitFor('submit_approve_access').then(function() {
-                    console.log('10 - on a  un submit affiché');
+                    console.log('10 - the is a button approve displayed');
                     expect(driver.findElement(webdriver.By.id('submit_approve_access'))).toBeDefined();
                 });
             });
@@ -246,20 +246,20 @@
 
             it("grants access", function(done) {
                 driver.findElement(webdriver.By.id('submit_approve_access')).click().then(function(what) {
-                    console.log('11 - submit_approve_access click : '+ what) ;
+                    console.log('11 - after click on submit_approve_access : '+ what) ;
                 });
 
-                var popUpHandle,  parentHandle;
+                expect(true).toBe(false);
 
                 driver.getAllWindowHandles().then(function(handles) {
-                    popUpHandle = handles[1];
-                    parentHandle = handles[0];
-                    console.log('12 - switchTo');
-                    driver.switchTo().window(popUpHandle);
+                    console.log('12 - back to a unique parent window');
+                    console.log('12 - ', handles.length);
+                    expect(handles.length).toBe(1);
+
                 });
 
                 waitFor('profile-login').then(function() {
-                    console.log('13 - on a  un profile affiché');
+                    console.log('12 - there is a profile displayed');
                     expect(driver.findElement(webdriver.By.id('profile-login'))).toBeDefined();
                 });
             });
@@ -268,15 +268,16 @@
         describe("displays the username", function() {
             var window_title;
 
-            it("grants access", function(done) {
+            it("after it has granted the access, we know the username", function(done) {
 
                 driver.findElement(webdriver.By.id('profile-login')).getText()
                     .then(function (value) {
+                        console.log('13 - the logged username is : '+ value) ;
                         if (value.indexOf(name) !== 0) {
+
                             deferred.rejected(value + ' did not contain ' + name);
                         } else {
                             expect(value).toBe(name);
-                            console.log('14 - profile-login : '+ value) ;
                             deferred.fulfill();
                         }
                     });
