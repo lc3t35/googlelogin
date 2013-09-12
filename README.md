@@ -14,7 +14,7 @@ modify settings.json with your API keys for port 3000 (get it with Google Consol
 
 ```
 meteor --settings settings.json
-``
+```
 
 Run the acceptance tests with RTD :
 
