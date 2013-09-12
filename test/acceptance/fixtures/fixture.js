@@ -36,6 +36,7 @@
     Meteor.startup(function () {
         reset();
         createRoute('reset', reset);
-        oauthRoute('_oauth', oauth);
+        // oauthRoute('_oauth', oauth);       // no need for _oauth
     });
 })();
+

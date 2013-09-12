@@ -1,7 +1,7 @@
 (function () {
     "use strict";
 
-    require('fibrous/lib/jasmine_spec_helper');
+    // require('fibrous/lib/jasmine_spec_helper');
 
     jasmine.getEnv().defaultTimeoutInterval = 20000;
 
@@ -211,7 +211,6 @@
         });
 
         describe("send google credentials", function() {
-            var window_title;
 
             it("ask for permission", function(done) {
                 driver.findElement(webdriver.By.id('Email')).sendKeys(email);
@@ -242,18 +241,14 @@
         });
 
         describe("validate permission", function() {
-            var window_title;
 
             it("grants access", function(done) {
                 driver.findElement(webdriver.By.id('submit_approve_access')).click().then(function(what) {
                     console.log('11 - after click on submit_approve_access : '+ what) ;
                 });
 
-                expect(true).toBe(false);
-
                 driver.getAllWindowHandles().then(function(handles) {
                     console.log('12 - back to a unique parent window');
-                    console.log('12 - ', handles.length);
                     expect(handles.length).toBe(1);
 
                 });
@@ -268,11 +263,12 @@
         describe("displays the username", function() {
             var window_title;
 
-            it("after it has granted the access, we know the username", function(done) {
+            it("after it has granted the access, we know the username now", function(done) {
 
+                console.log('13 - verify the name');
                 driver.findElement(webdriver.By.id('profile-login')).getText()
                     .then(function (value) {
-                        console.log('13 - the logged username is : '+ value) ;
+                        console.log('14 - the logged username is : '+ value) ;
                         if (value.indexOf(name) !== 0) {
 
                             deferred.rejected(value + ' did not contain ' + name);

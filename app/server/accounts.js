@@ -1,35 +1,37 @@
-Accounts.onCreateUser(function (options, user) {
+(function(){
+    Accounts.onCreateUser(function (options, user) {
 
-  var accessToken = user.services.google.accessToken,
-      result,
-      profile;
+        var accessToken = user.services.google.accessToken,
+            result,
+            profile;
 
-  result = Meteor.http.get("https://www.googleapis.com/oauth2/v3/userinfo", {
-		headers: {"User-Agent": "Meteor/1.0"},
-		
-    params: {
-      access_token: accessToken
-    }
-  });
+        result = Meteor.http.get("https://www.googleapis.com/oauth2/v3/userinfo", {
+            headers: {"User-Agent": "Meteor/1.0"},
 
-  if (result.error)
-    throw result.error;
+            params: {
+                access_token: accessToken
+            }
+        });
 
-  profile = _.pick(result.data,
-    "name",  
-	"given_name",
-    "family_name",
-    "profile",
-    "picture",
-    "email",
-    "email_verified",
-    "birthdate",
-    "gender",
-    "locale",
-    "hd");
+        if (result.error)
+            throw result.error;
 
-  // console.log(profile);
-  user.profile = profile;
+        profile = _.pick(result.data,
+            "name",
+            "given_name",
+            "family_name",
+            "profile",
+            "picture",
+            "email",
+            "email_verified",
+            "birthdate",
+            "gender",
+            "locale",
+            "hd");
 
-  return user;
-});
+        // console.log(profile);
+        user.profile = profile;
+
+        return user;
+    });
+}());
