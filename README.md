@@ -1,10 +1,13 @@
-Google Login inside Meteor
-==========================
+Google Login inside Meteor (but for version 0.6)
+================================================
 based on Chris Mather's video Customizing Login, http://www.eventedmind.com/posts/meteor-customizing-login,
 Sets up logins via Google's app api instead of GitHub (https://github.com/m2web/githublogin)
 
 It's the result of the process for solving this question
 http://stackoverflow.com/questions/18366500/how-to-get-google-profile-with-meteor-loginwithgoogle
+
+Update 17/06/2016 : for meteor 1.3, you can find a working example here
+http://blog.differential.com/meteor-google-oauth-from-react-native/
 
 USAGE :
 
